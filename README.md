@@ -1,33 +1,106 @@
-Resume Category Predictor using BERT
+#  Resume Category Predictor
 
-This project is an NLP-based Resume Classification System that automatically predicts the job category of a given resume using BERT (Bidirectional Encoder Representations from Transformers) embeddings and Logistic Regression.
-It supports both text input and PDF uploads, making it easy to analyze resumes in different formats.
+A Natural Language Processing (NLP)-based project that automatically classifies resumes into their respective job categories using **BERT embeddings** and **Logistic Regression**.  
+The model supports both **text input** and **PDF uploads**, allowing real-time predictions through an interactive Gradio interface.
 
-Features
+---
 
-Accepts resume text or PDF file as input
-Utilizes BERT embeddings to capture contextual meaning from resumes
-Classifies resumes into 24 professional categories (e.g., Engineering, Finance, Healthcare, IT, Teaching, etc.)
-Interactive Gradio web interface with clean UI
-Trained using the Kaggle Resume Dataset
+##  Project Overview
 
-Technologies Used
+This project aims to build an **intelligent resume classification system** that analyzes the textual content of a resume and predicts the most relevant job category (e.g., *Engineering, Healthcare, HR, Finance*, etc.).  
+The system uses **advanced NLP techniques** such as text preprocessing, BERT embeddings, and machine learning classification.
 
-Python, Pandas, Scikit-learn
-BERT (Hugging Face Transformers)
-PyTorch
-Gradio for UI
-PyPDF2 for PDF text extraction
+---
 
-Model Details
+##  Dataset
 
-Text preprocessed and converted into BERT embeddings
-Classified using Logistic Regression
-Achieved ~76% accuracy on test data
-Fine-tuned to correctly identify 24 job categories such as HR, IT, Teacher, Banking, Designer, etc.
+**Source:** [Kaggle – Resume Dataset by Snehaan Bhawal](https://www.kaggle.com/datasets/snehaanbhawal/resume-dataset)
 
-Future Improvements
+**About the Dataset:**
+- Contains 2400+ resumes in both PDF and text format.
+- Extracted from [livecareer.com](https://www.livecareer.com/).
+- Each resume belongs to one of 24 predefined categories.
 
-Deploy as a web app (Streamlit/Hugging Face Spaces)
-Add support for multilingual resumes
-Improve accuracy using fine-tuned domain-specific BERT models
+**Dataset Columns:**
+| Column Name | Description |
+|--------------|--------------|
+| `ID` | Unique identifier and PDF filename |
+| `Resume_str` | Resume text content |
+| `Resume_html` | Resume in HTML format (from scraping) |
+| `Category` | Job role category label |
+
+**Categories Include:**  
+HR, Designer, Information-Technology, Teacher, Advocate, Business-Development, Healthcare, Fitness, Agriculture, BPO, Sales, Consultant, Digital-Media, Automobile, Chef, Finance, Apparel, Engineering, Accountant, Construction, Public-Relations, Banking, Arts, Aviation
+
+---
+
+##  Methodology
+
+### **1. Data Preprocessing**
+- Removed unnecessary symbols, URLs, and extra spaces.
+- Lowercased all text.
+- Removed stopwords and lemmatized words.
+
+### **2. Feature Extraction**
+We experimented with multiple NLP vectorization methods:
+| Method | Description | Result |
+|--------|-------------|--------|
+| **CountVectorizer** | Basic word frequency representation | Moderate accuracy (~67%) |
+| **TF–IDF Vectorizer** | Weighted term frequency to reduce common word bias | Improved accuracy (~75%) |
+| **BERT Embeddings** | Contextual word representations from pretrained BERT | Best performance (~78%) |
+
+After experimentation, **BERT embeddings** were chosen for the final model due to their ability to capture **semantic meaning** and contextual relationships in text.
+
+### **3. Model Training**
+- Split data: 80% training, 20% testing.
+- Trained multiple classifiers:
+  - Random Forest  
+  - Logistic Regression  
+  - SVM  
+  - Naive Bayes  
+  - XGBoost  
+  - Gradient Boosting  
+  - Passive Aggressive
+
+**Best Performer:**  
+ **Logistic Regression + BERT Embeddings**  
+This combination achieved the most balanced precision and recall across all categories.
+
+### **4. Deployment**
+- Built an interactive **Gradio UI** to allow users to:
+  - Type or paste resume text.
+  - Upload a PDF resume.
+- The app processes the text and predicts the most suitable job category.
+
+---
+
+##  Results
+
+| Model | Vectorization | Accuracy |
+|--------|----------------|-----------|
+| Random Forest | CountVectorizer | 67% |
+| XGBoost | TF-IDF | 75% |
+| Logistic Regression | BERT Embeddings | **~78%** |
+
+**Sample Predictions:**
+| Input | Predicted Category |
+|--------|---------------------|
+| Resume of software developer | Information-Technology |
+| Resume of teacher | Teacher |
+| Resume of data analyst | Engineering |
+| Resume of fitness trainer | Fitness |
+| Resume of nurse | Healthcare |
+
+---
+
+##  Technologies Used
+
+- **Python**
+- **Transformers (BERT)** – for text embeddings  
+- **Scikit-learn** – for model training and evaluation  
+- **Gradio** – for web-based UI  
+- **PyPDF2** – for PDF text extraction  
+- **Joblib** – for model persistence  
+
+---
+
