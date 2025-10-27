@@ -1,6 +1,7 @@
 Resume Category Predictor using BERT
 
-This project is an NLP-based Resume Classification System that automatically predicts the job category of a given resume using BERT (Bidirectional Encoder Representations from Transformers) embeddings and Logistic Regression.It supports both text input and PDF uploads, making it easy to analyze resumes in different formats.
+This project is an NLP-based Resume Classification System that automatically predicts the job category of a given resume using BERT (Bidirectional Encoder Representations from Transformers) embeddings and Logistic Regression.
+It supports both text input and PDF uploads, making it easy to analyze resumes in different formats.
 
 Features
 
