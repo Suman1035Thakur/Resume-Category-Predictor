@@ -82,14 +82,6 @@ This combination achieved the most balanced precision and recall across all cate
 | XGBoost | TF-IDF | 75% |
 | Logistic Regression | BERT Embeddings | **~78%** |
 
-**Sample Predictions:**
-| Input | Predicted Category |
-|--------|---------------------|
-| Resume of software developer | Information-Technology |
-| Resume of teacher | Teacher |
-| Resume of data analyst | Engineering |
-| Resume of fitness trainer | Fitness |
-| Resume of nurse | Healthcare |
 
 ---
 
